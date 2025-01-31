@@ -52,6 +52,20 @@ local Connection = RunService.Heartbeat:Connect(function()
 	
 end)
 
+local function UseAbility(Name)
+	
+	local Tool = Player.Backpack:FindFirstChild(Name)
+	
+	if Tool then
+		
+		Tool.Parent = Character
+		
+		Tool.Parent = Player.Backpack
+		
+	end
+	
+end
+
 local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 	
 	if Debounce then
@@ -68,7 +82,9 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 		
 		Offset = CFrame.new(0, 0.5, -5)
 		
-		task.wait(1)
+		UseAbility("Normal Punch")
+		
+		task.wait(1.5)
 		
 		Offset = NormalOffset
 		
