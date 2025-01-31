@@ -19,8 +19,8 @@ if not Target then
 	
 end
 
-local TargetHumanoidRootPart = Target:WaitForChild("HumanoidRootPart")
-local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+local TargetHumanoidRootPart = Target:WaitForChild("Torso")
+local HumanoidRootPart = Character:WaitForChild("Torso")
 
 local Offset = CFrame.new(-3, 1.5, 3)
 
