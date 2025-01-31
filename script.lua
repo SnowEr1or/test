@@ -1,3 +1,5 @@
+print("V-0.0.1 [IN-DEV]")
+
 local RunService = game:GetService("RunService")
 
 local Player = game:GetService("Players").LocalPlayer
