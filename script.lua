@@ -7,7 +7,7 @@ if not _G.Player then
 	
 end
 
-local Target = workspace:FindFirstChild(_G.Player)
+local Target = workspace.Live:FindFirstChild(_G.Player)
 
 local TargetHumanoidRootPart = Target:WaitForChild("HumanoidRootPart")
 local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
