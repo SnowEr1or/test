@@ -84,12 +84,28 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 		
 		UseAbility("Normal Punch")
 		
-		task.wait(1.5)
+		task.wait(1)
 		
 		Offset = NormalOffset
 		
 		Debounce = false
 		
+	end
+	
+	if Message == "2" then
+
+		Debounce = true
+
+		Offset = CFrame.new(0, 0.5, -5)
+
+		UseAbility("Consecutive Punches")
+
+		task.wait(2)
+
+		Offset = NormalOffset
+
+		Debounce = false
+
 	end
 	
 end)
