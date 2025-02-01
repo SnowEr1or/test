@@ -310,7 +310,7 @@ while Character.Parent and Target.Parent do
 
 	task.wait()
 	
-	if TargetHumanoidRootPart:FindFirstChild("Attachment1831551182") and not Debounce then
+	if Target:FindFirstChild("Freeze") and not Debounce then
 		
 		Debounce = true
 		
@@ -322,7 +322,7 @@ while Character.Parent and Target.Parent do
 				
 				task.wait()
 				
-			until not TargetHumanoidRootPart:FindFirstChild("Attachment1831551182")
+			until not Target:FindFirstChild("Freeze")
 			
 			Offset = NormalOffset
 			
