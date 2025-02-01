@@ -113,6 +113,12 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 	
 	local Moves = {1, 2, 3, 4}
 	local Waits = {[1] = 1; [2] = 2; [3] = 0.8}
+	
+	local function CustomWait()
+		
+		task.wait(tonumber(Waits[Message[1]]))
+		
+	end
 
 	if Message[1] == "1" then
 
@@ -122,7 +128,7 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 
 		UseAbility("Normal Punch")
 
-		task.wait(Waits[Message[1]])
+		CustomWait(Message[1])
 
 		Offset = NormalOffset
 
@@ -138,7 +144,7 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 
 		UseAbility("Consecutive Punches")
 
-		task.wait(Waits[Message[1]])
+		CustomWait(Message[1])
 
 		Offset = NormalOffset
 
@@ -154,7 +160,7 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 
 		UseAbility("Shove")
 
-		task.wait(Waits[Message[1]])
+		CustomWait(Message[1])
 
 		Offset = NormalOffset
 
@@ -199,7 +205,7 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 
 					end
 					
-					task.wait(Waits[Message[1]])
+					CustomWait(Message[1])
 					
 				end
 				
