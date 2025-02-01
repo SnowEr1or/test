@@ -176,7 +176,7 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 		
 		if Target then
 			
-			Target = workspace:FindFirstChild(Target)
+			Target = workspace.Live:FindFirstChild(Target)
 			
 			if Target then
 				
