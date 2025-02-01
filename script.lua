@@ -116,7 +116,7 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 	
 	local function CustomWait()
 		
-		task.wait(tonumber(Waits[Message[1]]))
+		task.wait(Waits[tonumber(Message[1])])
 		
 	end
 
