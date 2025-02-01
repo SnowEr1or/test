@@ -4,17 +4,36 @@ if workspace:FindFirstChild("Stand Script Running") then
 	
 end
 
+local CoreGui
+local RunService = game:GetService("RunService")
+
+if RunService:IsStudio() then
+	
+	CoreGui = game.StarterGui
+	
+else
+	
+	CoreGui = game.CoreGui
+	
+end
+
 local ScriptRunning = Instance.new("Part")
 
-ScriptRunning.Parent = game.CoreGui
+ScriptRunning.Parent = CoreGui
 ScriptRunning.Name = "Stand Script Running"
 
 print("V-0.0.1 [IN-DEV]")
 
-local RunService = game:GetService("RunService")
-
 local Player = game:GetService("Players").LocalPlayer
 local Character = Player.Character
+
+if not Character then
+	
+	ScriptRunning:Destroy()
+	
+	return
+	
+end
 
 if not _G.Player then
 
@@ -44,22 +63,26 @@ end
 if (not Target or not TargetPlayer) and not RunService:IsStudio() then
 
 	print("Can't find player.")
+	
+	ScriptRunning:Destroy()
 
 	return
 
 end
 
-local TargetHumanoidRootPart = Target:WaitForChild("Torso")
-local HumanoidRootPart = Character:WaitForChild("Torso")
+local TargetHumanoidRootPart = Target:WaitForChild("HumanoidRootPart")
+local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
 
 local Debounce = false
 
 local NormalOffset = CFrame.new(-3, 1.5, 3)
+local TargetPart = TargetHumanoidRootPart
+
 local Offset = NormalOffset
 
 local Connection = RunService.Heartbeat:Connect(function()
 
-	Character:PivotTo(TargetHumanoidRootPart.CFrame * Offset)
+	Character:PivotTo(TargetPart.CFrame * Offset)
 
 end)
 
@@ -86,8 +109,11 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 	end
 
 	Message = string.lower(Message)
+	Message = string.split(Message, " ")
+	
+	local Moves = {1, 2, 3, 4}
 
-	if Message == "1" then
+	if Message[1] == "1" then
 
 		Debounce = true
 
@@ -103,7 +129,7 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 
 	end
 
-	if Message == "2" then
+	if Message[1] == "2" then
 
 		Debounce = true
 
@@ -117,6 +143,51 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 
 		Debounce = false
 
+	end
+	
+	if Message[1] == "3" then
+
+		Debounce = true
+
+		Offset = CFrame.new(0, 0.5, -5)
+
+		UseAbility("Shove")
+
+		task.wait(0.8)
+
+		Offset = NormalOffset
+
+		Debounce = false
+
+	end
+	
+	if Message[1] == "!target" and Message[2] and table.find(Moves, tonumber(Message[2])) and Message[3] then
+		
+		Debounce = true
+		
+		local Target = table.concat(Message, " ", 3)
+		
+		if Target then
+			
+			Target = workspace.Live:FindFirstChild(Target)
+			
+			if Target then
+				
+				local ChosenHumanoidRootPart = Target:FindFirstChild("HumanoidRootPart")
+				
+				if ChosenHumanoidRootPart then
+					
+					Offset = CFrame.new(0, 0.5, 3)
+					TargetPart = ChosenHumanoidRootPart
+					
+				end
+				
+			end
+			
+		end
+		
+		-- Debounce = false
+		
 	end
 
 end)
