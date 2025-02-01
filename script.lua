@@ -22,7 +22,7 @@ local ScriptRunning = Instance.new("Part")
 ScriptRunning.Parent = CoreGui
 ScriptRunning.Name = "Stand Script Running"
 
-print("V-0.0.1 [IN-DEV]")
+print("V-0.0.2 [IN-DEV]")
 
 local Player = game:GetService("Players").LocalPlayer
 local Character = Player.Character
@@ -112,6 +112,7 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 	Message[1] = string.lower(Message[1])
 	
 	local Moves = {1, 2, 3, 4}
+	local Waits = {[1] = 1; [2] = 2; [3] = 0.8}
 
 	if Message[1] == "1" then
 
@@ -121,7 +122,7 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 
 		UseAbility("Normal Punch")
 
-		task.wait(1)
+		task.wait(Waits[Message[1]])
 
 		Offset = NormalOffset
 
@@ -137,7 +138,7 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 
 		UseAbility("Consecutive Punches")
 
-		task.wait(2)
+		task.wait(Waits[Message[1]])
 
 		Offset = NormalOffset
 
@@ -153,7 +154,7 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 
 		UseAbility("Shove")
 
-		task.wait(0.8)
+		task.wait(Waits[Message[1]])
 
 		Offset = NormalOffset
 
@@ -169,7 +170,7 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 		
 		if Target then
 			
-			Target = workspace.Live:FindFirstChild(Target)
+			Target = workspace:FindFirstChild(Target)
 			
 			if Target then
 				
@@ -177,16 +178,37 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 				
 				if ChosenHumanoidRootPart then
 					
-					Offset = CFrame.new(0, 0.5, 3)
+					Offset = CFrame.new(0, 0, 3.5)
 					TargetPart = ChosenHumanoidRootPart
 					
-					return
+					if Message[1] == "1" then
+						
+						UseAbility("Normal Punch")
+						
+					end
+					
+					if Message[1] == "2" then
+
+						UseAbility("Consecutive Punches")
+
+					end
+					
+					if Message[1] == "3" then
+
+						UseAbility("Shove")
+
+					end
+					
+					task.wait(Waits[Message[1]])
 					
 				end
 				
 			end
 			
 		end
+		
+		Offset = NormalOffset
+		TargetPart = TargetHumanoidRootPart
 		
 		Debounce = false
 		
