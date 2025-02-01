@@ -43,7 +43,7 @@ end
 
 if RunService:IsStudio() then
 
-	_G.Player = "Rig"
+	_G.Player = "Weakest Dummy"
 
 end
 
@@ -107,9 +107,9 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 		return
 
 	end
-
-	Message = string.lower(Message)
+	
 	Message = string.split(Message, " ")
+	Message[1] = string.lower(Message[1])
 	
 	local Moves = {1, 2, 3, 4}
 
@@ -169,7 +169,7 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 		
 		if Target then
 			
-			Target = workspace.Live:FindFirstChild(Target)
+			Target = workspace:FindFirstChild(Target)
 			
 			if Target then
 				
@@ -180,13 +180,15 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 					Offset = CFrame.new(0, 0.5, 3)
 					TargetPart = ChosenHumanoidRootPart
 					
+					return
+					
 				end
 				
 			end
 			
 		end
 		
-		-- Debounce = false
+		Debounce = false
 		
 	end
 
