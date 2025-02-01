@@ -298,11 +298,16 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 			end
 			
 			M1(3)
-
+			
 			UseAbility("Normal Punch")
 
-			CustomWait(1)
-
+			repeat task.wait() until Character:FindFirstChild("Freeze")
+			repeat task.wait() until not Character:FindFirstChild("Freeze")
+			
+			UseAbility("Consecutive Punches")
+			
+			CustomWait(2)
+			
 		end
 
 		Offset = NormalOffset
