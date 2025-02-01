@@ -136,7 +136,7 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 				
 				Communicate:FireServer({Goal = "LeftClickRelease"})
 
-				task.wait(0.4)
+				task.wait(0.6)
 
 			end
 			
