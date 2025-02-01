@@ -119,6 +119,30 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 		task.wait(Waits[tonumber(Num)])
 		
 	end
+	
+	local function M1(Amount)
+		
+		Amount = math.clamp(Amount, 1, 4)
+		
+		local Communicate = Character:FindFirstChild("Communicate")
+		
+		if Communicate then
+			
+			for _ = 1, Amount do
+
+				Communicate:FireServer({Goal = "LeftClick"})
+				
+				task.wait()
+				
+				Communicate:FireServer({Goal = "LeftClickRelease"})
+
+				task.wait(0.2)
+
+			end
+			
+		end
+		
+	end
 
 	if Message[1] == "1" then
 
@@ -240,6 +264,44 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 		
 		Debounce = false
 		
+	end
+	
+	if Message[1] == "!combo" and Message[2] then
+
+		Debounce = true
+
+		local Target = table.concat(Message, " ", 2)
+
+		if Target then
+
+			Target = workspace.Live:FindFirstChild(Target)
+
+			if Target then
+
+				local ChosenHumanoidRootPart = Target:FindFirstChild("HumanoidRootPart")
+
+				if ChosenHumanoidRootPart then
+
+					Offset = CFrame.new(0, 0, 3.5)
+					TargetPart = ChosenHumanoidRootPart
+
+					M1(3)
+					
+					UseAbility("Normal Punch")
+					
+					CustomWait(1)
+
+				end
+
+			end
+
+		end
+
+		Offset = NormalOffset
+		TargetPart = TargetHumanoidRootPart
+
+		Debounce = false
+
 	end
 
 end)
