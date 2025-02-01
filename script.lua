@@ -284,16 +284,24 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 
 					Offset = CFrame.new(0, 0, 3.5)
 					TargetPart = ChosenHumanoidRootPart
-
-					M1(3)
 					
-					UseAbility("Normal Punch")
+				else
 					
-					CustomWait(1)
+					Offset = CFrame.new(0, 0, 3.5)
 
 				end
+				
+			else
+				
+				Offset = CFrame.new(0, 0, 3.5)
 
 			end
+			
+			M1(3)
+
+			UseAbility("Normal Punch")
+
+			CustomWait(1)
 
 		end
 
