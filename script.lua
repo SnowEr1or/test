@@ -112,7 +112,7 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 	Message[1] = string.lower(Message[1])
 	
 	local Moves = {1, 2, 3, 4}
-	local Waits = {[1] = 1; [2] = 2; [3] = 0.8}
+	local Waits = {[1] = 1; [2] = 2; [3] = 0.8; [4] = 1;}
 	
 	local function CustomWait(Num)
 		
@@ -168,6 +168,22 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 
 	end
 	
+	if Message[1] == "4" then
+
+		Debounce = true
+
+		Offset = CFrame.new(0, 0.5, -5)
+
+		UseAbility("Uppercut")
+
+		CustomWait(Message[1])
+
+		Offset = NormalOffset
+
+		Debounce = false
+
+	end
+	
 	if Message[1] == "!target" and Message[2] and table.find(Moves, tonumber(Message[2])) and Message[3] then
 		
 		Debounce = true
@@ -202,6 +218,12 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 					if Message[2] == "3" then
 
 						UseAbility("Shove")
+
+					end
+					
+					if Message[2] == "4" then
+
+						UseAbility("Uppercut")
 
 					end
 					
