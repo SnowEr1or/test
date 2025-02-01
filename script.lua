@@ -309,6 +309,28 @@ end)
 while Character.Parent and Target.Parent do
 
 	task.wait()
+	
+	if TargetHumanoidRootPart:FindFirstChild("Attachment1831551182") and not Debounce then
+		
+		Debounce = true
+		
+		task.spawn(function()
+			
+			Offset = CFrame.new(0, 30, 0)
+			
+			repeat
+				
+				task.wait()
+				
+			until not TargetHumanoidRootPart:FindFirstChild("Attachment1831551182")
+			
+			Offset = NormalOffset
+			
+			Debounce = false
+			
+		end)
+		
+	end
 
 end
 
