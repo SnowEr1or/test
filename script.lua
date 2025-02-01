@@ -187,25 +187,25 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 					Offset = CFrame.new(0, 0, 3.5)
 					TargetPart = ChosenHumanoidRootPart
 					
-					if Message[1] == "1" then
+					if Message[2] == "1" then
 						
 						UseAbility("Normal Punch")
 						
 					end
 					
-					if Message[1] == "2" then
+					if Message[2] == "2" then
 
 						UseAbility("Consecutive Punches")
 
 					end
 					
-					if Message[1] == "3" then
+					if Message[2] == "3" then
 
 						UseAbility("Shove")
 
 					end
 					
-					CustomWait(Message[1])
+					CustomWait(Message[2])
 					
 				end
 				
