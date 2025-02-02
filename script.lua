@@ -78,9 +78,17 @@ local Debounce = false
 local NormalOffset = CFrame.new(-3, 1.5, 3)
 local TargetPart = TargetHumanoidRootPart
 
+local Enabled = true
+
 local Offset = NormalOffset
 
 local Connection = RunService.Heartbeat:Connect(function()
+	
+	if not Enabled then
+		
+		return
+		
+	end
 
 	Character:PivotTo(TargetPart.CFrame * Offset)
 
@@ -433,6 +441,8 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 					repeat task.wait() until Character:FindFirstChild("Freeze")
 					repeat task.wait() until not Character:FindFirstChild("Freeze") or workspace.CurrentCamera.CameraType ~= Enum.CameraType.Custom
 					
+					Enabled = false
+					
 					if workspace.CurrentCamera.CameraType == Enum.CameraType.Custom then
 						
 						repeat task.wait() until workspace.CurrentCamera.CameraType == Enum.CameraType.Custom
@@ -449,6 +459,7 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 		TargetPart = TargetHumanoidRootPart
 
 		Debounce = false
+		Enabled = true
 
 	end
 
