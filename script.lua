@@ -431,6 +431,9 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 				local ChosenHumanoidRootPart = Target:FindFirstChild("HumanoidRootPart")
 
 				if ChosenHumanoidRootPart then
+					
+					Offset = CFrame.new(0, 0, 3.5)
+					TargetPart = ChosenHumanoidRootPart
 
 					if Message[2] == "4" then
 
