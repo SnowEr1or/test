@@ -316,7 +316,7 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 		Debounce = false
 
 	end
-	
+
 	if Message[1] == "!fling" and Message[2] then
 
 		Debounce = true
@@ -331,12 +331,12 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 
 				local ChosenHumanoidRootPart = Target:FindFirstChild("HumanoidRootPart")
 				local ChosenHumanoid = Target:FindFirstChild("Humanoid")
-				
+
 				if ChosenHumanoidRootPart and ChosenHumanoid then
 
 					Offset = CFrame.new(0, 0, 0)
 					TargetPart = ChosenHumanoidRootPart
-					
+
 					for _, Part in Character:GetDescendants() do
 
 						if Part and Part:IsA("BasePart") then
@@ -346,35 +346,35 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 						end
 
 					end
-					
+
 					local Angular = Instance.new("BodyAngularVelocity")
-					
+
 					Angular.Parent = HumanoidRootPart
-					
+
 					Angular.AngularVelocity = Vector3.new(0, 99999 ,0)
 					Angular.MaxTorque = Vector3.new(0, math.huge ,0)
 					Angular.P = math.huge
-					
+
 					task.spawn(function()
-						
+
 						while Angular.Parent do
-							
+
 							Angular.AngularVelocity = Vector3.new(0, 99999 ,0)
-							
+
 							task.wait(0.2)
-							
+
 							Angular.AngularVelocity = Vector3.new(0, 0, 0)
-							
+
 							task.wait(0.1)
-							
+
 						end
-						
+
 					end)
-					
+
 					repeat task.wait() until not Target.Parent or ChosenHumanoidRootPart.Position.Y > 999 or ChosenHumanoid.Health < 1
-					
+
 					Angular:Destroy()
-					
+
 					for _, Part in Character:GetDescendants() do
 
 						if Part and Part:IsA("BasePart") then
@@ -384,14 +384,58 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 						end
 
 					end
-					
+
 					for _, Part in Character:GetDescendants() do
-						
+
 						if Part and Part:IsA("BasePart") then
-							
+
 							Part.AssemblyLinearVelocity = Vector3.zero
-							
+
 						end
+
+					end
+
+				end
+
+			end
+
+		end
+
+		Offset = NormalOffset
+		TargetPart = TargetHumanoidRootPart
+
+		Debounce = false
+
+	end
+
+	if Message[1] == "!ult" and Message[2] and table.find(Moves, tonumber(Message[2])) and Message[3] then
+
+		Debounce = true
+
+		local Target = table.concat(Message, " ", 3)
+
+		if Target then
+
+			Target = workspace.Live:FindFirstChild(Target)
+
+			if Target then
+
+				local ChosenHumanoidRootPart = Target:FindFirstChild("HumanoidRootPart")
+
+				if ChosenHumanoidRootPart then
+
+					if Message[2] == "4" then
+
+						UseAbility("Omni Directional Punch")
+
+					end
+
+					repeat task.wait() until Character:FindFirstChild("Freeze")
+					repeat task.wait() until not Character:FindFirstChild("Freeze") or workspace.CurrentCamera.CameraType ~= Enum.CameraType.Custom
+					
+					if workspace.CurrentCamera.CameraType == Enum.CameraType.Custom then
+						
+						repeat task.wait() until workspace.CurrentCamera.CameraType == Enum.CameraType.Custom
 						
 					end
 
