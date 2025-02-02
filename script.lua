@@ -440,9 +440,11 @@ local Chatted = TargetPlayer.Chatted:Connect(function(Message)
 						UseAbility("Omni Directional Punch")
 
 					end
+					
+					local LastTick = tick()
 
 					repeat task.wait() until Character:FindFirstChild("Freeze")
-					repeat task.wait() until not Character:FindFirstChild("Freeze") or workspace.CurrentCamera.CameraType ~= Enum.CameraType.Custom
+					repeat task.wait() until not Character:FindFirstChild("Freeze") or tick() - LastTick > 3
 					
 					Enabled = false
 					
